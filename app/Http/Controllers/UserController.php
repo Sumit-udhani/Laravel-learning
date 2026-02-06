@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 class UserController extends Controller
 {
     function getUser(){
@@ -57,5 +58,29 @@ class UserController extends Controller
     function students(){
         $students= \App\Models\Student::all();
         return $students;
+    }
+    //Http client api calling
+    function teacher(){
+        $response = Http::get('https://jsonplaceholder.typicode.com/todos/1');
+        return $response;
+    }
+    //query builder
+    function getUsersByQb(){
+        // $result = DB::table('students')->where('email','viren1@gmail.com')->get();
+        // return $result;
+        // $result = DB::table('students')->insert([
+        //     'name'=>'manish',
+        //     'email'=>'manisseo@gmail.com',
+        //     'batch'=>'2021'
+        // ]);
+        $result = DB::table('students')->where('email','manisseo@gmail.com')->update([
+            'batch'=>'2026'
+        ]);
+        if ($result) {
+            return "Data Updated";
+        }
+        else{
+            return "Data Not Updated";
+        }
     }
 }

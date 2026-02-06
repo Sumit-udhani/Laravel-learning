@@ -41,5 +41,10 @@ Route::get('delete','delete');
 
 
 Route::get('add/{name}',[StudentController::class,'addName'])->middleware(NameCheck::class);
-Route::get('display',[UserController::class,'display']);
-Route::get('students',[UserController::class,'students']);
+
+Route::controller(UserController::class)->group(function(){
+Route::get('display','display');
+Route::get('students','students');
+Route::get('teacher','teacher');
+Route::get('qb','getUsersByQb');
+});
