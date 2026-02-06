@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     function getUser(){
@@ -48,5 +49,13 @@ class UserController extends Controller
     }
      function addStudent(){
         return "Add student";
+    }
+    function display(){
+       $users= DB::select('select * from users');
+        return view('users',['users'=>$users]);
+    }
+    function students(){
+        $students= \App\Models\Student::all();
+        return $students;
     }
 }

@@ -41,3 +41,5 @@ Route::get('delete','delete');
 
 
 Route::get('add/{name}',[StudentController::class,'addName'])->middleware(NameCheck::class);
+Route::get('display',[UserController::class,'display']);
+Route::get('students',[UserController::class,'students']);
