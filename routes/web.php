@@ -18,3 +18,11 @@ Route::view('user-form','userForm');
 Route::view('user-forms','userForms');
 Route::view('contact','contact');
 Route::post('addUser',[UserController::class,'addUser']);
+Route::view('/faq/users/profile','faq')->name('faq');
+
+//Prefix Groupe routes
+
+Route::prefix('student')->group(function(){
+Route::get('/show',[UserController::class,'showStudent']);
+Route::get('/add',[UserController::class,'addStudent']);
+});

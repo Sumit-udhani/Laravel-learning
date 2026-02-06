@@ -7,7 +7,7 @@
 @else
 <h2>Other person</h2>
 @endif
-
+<a href="{{route('faq')}}">Go to faq page</a>
 <div>
     @foreach($users as $user)
     <h2>{{$user}}</h2>

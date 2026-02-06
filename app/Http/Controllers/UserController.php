@@ -42,4 +42,11 @@ class UserController extends Controller
          return $request;
 
     }
+    //Route Groups 
+    function showStudent(){
+        return "Show student";
+    }
+     function addStudent(){
+        return "Add student";
+    }
 }
