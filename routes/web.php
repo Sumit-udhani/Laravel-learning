@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StudentController;
 // Route::get('/', function () {
 //     return view('home');
 // });
@@ -25,4 +26,12 @@ Route::view('/faq/users/profile','faq')->name('faq');
 Route::prefix('student')->group(function(){
 Route::get('/show',[UserController::class,'showStudent']);
 Route::get('/add',[UserController::class,'addStudent']);
+});
+
+//Group controller routes
+Route::controller(StudentController::class)->group(function(){
+Route::get('show','show');
+Route::get('add','add');
+Route::get('delete','delete');
+Route::get('add/{name}','addName');
 });
