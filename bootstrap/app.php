@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\AgeCheck;
+use App\Http\Middleware\CountyCheck;
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -11,8 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
-        $middleware ->append(AgeCheck::class);
+        //Group middleware
+        $middleware ->appendToGroup('check1',[
+            AgeCheck::class,
+            CountyCheck::class
+
+        ]);
 
     })
     ->withExceptions(function (Exceptions $exceptions): void {

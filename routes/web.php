@@ -6,7 +6,7 @@ use App\Http\Controllers\StudentController;
 // Route::get('/', function () {
 //     return view('home');
 // });
-Route::get('/',[UserController::class,'getUser']);
+Route::get('/',[UserController::class,'getUser'])->middleware('check1');
 Route::get('/about/{name}',function($name){
 return view('about',['name'=>$name]);
 });
@@ -29,9 +29,14 @@ Route::get('/add',[UserController::class,'addStudent']);
 });
 
 //Group controller routes
-Route::controller(StudentController::class)->group(function(){
+//Group middleware routes
+Route::middleware('check1')->group(function(){
+   Route::controller(StudentController::class)->group(function(){
 Route::get('show','show');
 Route::get('add','add');
 Route::get('delete','delete');
 Route::get('add/{name}','addName');
+}); 
 });
+
+
