@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
+use App\Http\Middleware\NameCheck;
 // Route::get('/', function () {
 //     return view('home');
 // });
@@ -35,8 +36,8 @@ Route::middleware('check1')->group(function(){
 Route::get('show','show');
 Route::get('add','add');
 Route::get('delete','delete');
-Route::get('add/{name}','addName');
 }); 
 });
 
 
+Route::get('add/{name}',[StudentController::class,'addName'])->middleware(NameCheck::class);
