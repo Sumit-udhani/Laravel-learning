@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\NameCheck;
+use App\Http\Controllers\QueryBuilderController;
 // Route::get('/', function () {
 //     return view('home');
 // });
@@ -48,3 +49,5 @@ Route::get('students','students');
 Route::get('teacher','teacher');
 Route::get('qb','getUsersByQb');
 });
+//Query builder crud
+Route::get('qbusers',[QueryBuilderController::class,'getUsers']);
