@@ -51,3 +51,6 @@ Route::get('qb','getUsersByQb');
 });
 //Query builder crud
 Route::get('qbusers',[QueryBuilderController::class,'getUsers']);
+
+//Eloquent Query builder crud
+Route::get('eloquent',[UserController::class,'queries']);

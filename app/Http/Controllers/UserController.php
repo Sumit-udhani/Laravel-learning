@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use  App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     function getUser(){
@@ -84,4 +87,43 @@ class UserController extends Controller
         }
     }
     
+    function queries(){
+    // $response = User::all();
+        // $response = User::where('name','viren')->get();
+        // $response = User::find(1);
+
+        // $response = User::insert([
+        //     'name'=>'manish',
+        //     'email'=>'manishseo@gmail.com',
+        //             'password' => Hash::make('123456'),
+        // ]);
+        // if ($response) {
+        //         return "data inserted";
+
+        // }
+        // else {
+        //     return "data not inserted";
+
+        // }
+        // $response = User::where('name','viren')->update([
+        //     'name'=>'veraa..'
+        // ]);
+        // if ($response) {
+        //         return "data updated";
+
+        // }
+        // else {
+        //     return "data not updated";
+
+        // }
+         $response = User::where('name','manish')->delete();
+        if ($response) {
+                return "data deleted";
+
+        }
+        else {
+            return "data not deleted";
+
+        }
+    }
 }
