@@ -54,3 +54,20 @@ Route::get('qbusers',[QueryBuilderController::class,'getUsers']);
 
 //Eloquent Query builder crud
 Route::get('eloquent',[UserController::class,'queries']);
+
+//Route methods
+Route::post('post',[UserController::class,'post']);
+Route::view('rv','routeview');
+
+//Sessions
+Route::post('login',[UserController::class,'login']);
+Route::view('login','login');
+Route::view('profile','profile');
+Route::get('logout',[UserController::class,'logout']);
+
+//flash Sessions
+Route::view('flash','flash');
+Route::post('add',[UserController::class,'flash']);
+//File upload
+Route::view('upload','upload');
+Route::post('upload',[UserController::class,'upload']);

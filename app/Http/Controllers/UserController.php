@@ -125,5 +125,40 @@ class UserController extends Controller
             return "data not deleted";
 
         }
+
+        
     }
+    function post(Request $req){
+            echo "ip is".$req->ip();
+            if ($req->ip()=='127.0.0.1') {
+                    die('This ip is not allowed');
+            }
+        }
+
+        function login(Request $req){
+            $req->session()->put('email',$req->input('email'));
+            return redirect('profile');
+        }
+        function logout(Request $req){
+            $req->session()->pull('email');
+            return redirect('profile');
+        }
+        //flash session
+        function flash(Request $req){
+            $req->session()->flash('msg','User added sucessfully!!');
+            return redirect('flash');
+        }
+
+    function upload(Request $req)
+{
+    $path = $req->file('file')->storeAs(
+        'public',
+        'dummy.png'
+    );
+
+    // remove "public/" for URL
+    $fileNameArray = explode("/",$path);
+    $fileName= $fileNameArray[1];
+    return view('display', ['path' => $fileName]);
+}   
 }
