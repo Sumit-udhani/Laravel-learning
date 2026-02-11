@@ -5,7 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\AgeCheck;
 use App\Http\Middleware\CountyCheck;
-
+use App\Http\Middleware\SetLang;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -19,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
             CountyCheck::class
 
         ]);
+      $middleware->alias([
+        'setlang' => \App\Http\Middleware\SetLang::class,
+    ]);
 
     })
     ->withExceptions(function (Exceptions $exceptions): void {

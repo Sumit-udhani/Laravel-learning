@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\NameCheck;
+use App\Http\Middleware\SetLang;
+
 use App\Http\Controllers\QueryBuilderController;
 // Route::get('/', function () {
 //     return view('home');
@@ -71,3 +73,19 @@ Route::post('add',[UserController::class,'flash']);
 //File upload
 Route::view('upload','upload');
 Route::post('upload',[UserController::class,'upload']);
+
+//Multi language
+
+Route::middleware(['setlang'])->group(function () {
+
+Route::view('lang','lang');   
+Route::get('about/{lang}',function($lang){
+   App::setlocale($lang);
+   return view('login','login');
+});
+Route::get('setlang/{lang}',function($lang){
+   Session::put('lang',$lang);
+   return redirect('/lang');
+})->middleware(SetLang::class);
+
+});
