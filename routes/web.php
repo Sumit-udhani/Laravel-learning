@@ -89,3 +89,16 @@ Route::get('setlang/{lang}',function($lang){
 })->middleware(SetLang::class);
 
 });
+
+//Insert data using forms
+Route::view('add-student','add-student');
+Route::post('add-students',[StudentController::class,'addStudent']);
+
+//Get data from table
+Route::get('student-list',[StudentController::class,'studentList']);
+//Delete data from table by id
+Route::get('delete/{id}',[StudentController::class,'deleteStudents']);
+
+//Update data 
+Route::get('edit/{id}',[StudentController::class,'editStudent']);
+Route::put('update-student/{id}',[StudentController::class,'updateStudent']);
