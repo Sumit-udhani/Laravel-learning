@@ -102,3 +102,18 @@ Route::get('delete/{id}',[StudentController::class,'deleteStudents']);
 //Update data 
 Route::get('edit/{id}',[StudentController::class,'editStudent']);
 Route::put('update-student/{id}',[StudentController::class,'updateStudent']);
+//Search data from db
+Route::get('search',[StudentController::class,'search']);
+
+//Delete multiple data
+Route::post('delete-multi',[StudentController::class,'deleteMulti']);
+
+
+//Upload Image in db
+Route::view('upload-image','uploadImage');
+Route::post('upload',[StudentController::class,'upload']);
+Route::get('display',[StudentController::class,'displayImage']);
+
+
+//component 
+Route::view('component','component');

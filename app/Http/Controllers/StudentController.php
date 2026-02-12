@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Image;
 class StudentController extends Controller
 {
     //Group controller routes
@@ -32,8 +33,15 @@ function add (){
         return "Student Not Added";
         }
     }
+
+    // Get data from db
+//  function studentList(){
+//     $student = Student::all();
+//     return view('student-list',['lists'=>$student]);
+//  }
+ //Pagination
  function studentList(){
-    $student = Student::all();
+    $student = Student::paginate(4);
     return view('student-list',['lists'=>$student]);
  }
  function deleteStudents($id){
@@ -62,4 +70,30 @@ function add (){
         return "Update operation failed";
     }
  }
+ //Searching from db
+ function search(Request $req){
+    $students = Student::where('name','like',"%{$req->search}%")->paginate(4);
+
+    return view('student-list', ['lists' => $students]);
+}
+function deleteMulti(Request $req){
+    $students = Student::destroy($req->ids);
+    return redirect('student-list');
+}
+//Image upload in db
+function upload(Request $req){
+
+    $path = $req->file('file')->store('images', 'public');
+
+    $image = new Image();
+    $image->path = $path;   // store full path
+    $image->save();
+
+    return redirect('/display');
+}
+
+function displayImage(){
+    $image = Image::all();
+    return view('displayImage',['data'=>$image]);
+}
 }
