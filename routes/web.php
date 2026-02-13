@@ -117,3 +117,6 @@ Route::get('display',[StudentController::class,'displayImage']);
 
 //component 
 Route::view('component','component');
+
+//Apply css in laravel
+Route::view('apply','applyjs');
