@@ -8,6 +8,8 @@ use App\Http\Middleware\SetLang;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\QueryBuilderController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\DeviceController;
+
 // Route::get('/', function () {
 //     return view('home');
 // });
@@ -131,3 +133,8 @@ Route::get('many-list',[SellerController::class,'manyList']);
 //Email send
 Route::post('send-mail',[MailController::class,'sendMail']);
 Route::view('send-mail','form');
+
+//Route model binding
+Route::get('device/{key:name}',[DeviceController::class,'index']);
+//Inlie Blade template
+Route::get('inline-blade',[DeviceController::class,'inlineBladeTemplate']);
