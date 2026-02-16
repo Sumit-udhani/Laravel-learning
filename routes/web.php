@@ -7,6 +7,7 @@ use App\Http\Middleware\NameCheck;
 use App\Http\Middleware\SetLang;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\QueryBuilderController;
+use App\Http\Controllers\MailController;
 // Route::get('/', function () {
 //     return view('home');
 // });
@@ -126,3 +127,7 @@ Route::get('list',[SellerController::class,'list']);
 
 //One to many
 Route::get('many-list',[SellerController::class,'manyList']);
+
+//Email send
+Route::post('send-mail',[MailController::class,'sendMail']);
+Route::view('send-mail','form');
