@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\NameCheck;
 use App\Http\Middleware\SetLang;
-
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\QueryBuilderController;
 // Route::get('/', function () {
 //     return view('home');
@@ -120,3 +120,9 @@ Route::view('component','component');
 
 //Apply css in laravel
 Route::view('apply','applyjs');
+
+//Relationships in laravel
+Route::get('list',[SellerController::class,'list']);
+
+//One to many
+Route::get('many-list',[SellerController::class,'manyList']);
